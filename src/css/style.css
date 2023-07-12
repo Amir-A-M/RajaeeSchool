@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --base-font-size: .65rem;
+    --fluid-typography-ratio: 0.6;
+    --rem-lg: calc(var(--base-font-size) + var(--fluid-typography-ratio) * 1vw);
+    --rem-md: calc(var(--base-font-size) + var(--fluid-typography-ratio) * 1.2vw);
+    --rem-sm: calc(var(--base-font-size) + var(--fluid-typography-ratio) * 1.5vw);
+    --rem-xsm: calc(var(--base-font-size) + var(--fluid-typography-ratio) * 2.1vw);
+    --rem-xxsm: calc(var(--base-font-size) + var(--fluid-typography-ratio) * 2.4vw);
+  }
+
+  *,
+  *::after,
+  ::before {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+  }
+
+  html {
+    scroll-behavior: smooth !important;
+
+    font-size: var(--rem-lg);
+
+    @media (min-width: 1280px) {
+      font-size: var(--rem-md);
+    }
+
+    @media (min-width: 1024px) {
+      font-size: var(--rem-sm);
+    }
+
+    @media (min-width: 768px) {
+      font-size: var(--rem-xsm);
+    }
+
+    @media (min-width: 640px) {
+      font-size: var(--rem-xxsm);
+    }
+  }
+
+  body {
+    @apply overflow-hidden h-screen;
+    font-family: "Vazirmatn", sans-serif;
+  }
+}
