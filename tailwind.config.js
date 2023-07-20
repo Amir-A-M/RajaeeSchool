@@ -5,7 +5,16 @@ module.exports = {
     "./build/**/*.{html,js}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        'screen': '100dvh',
+      },
+      minHeight: {
+        'screen': '100dvh',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require("@xpd/tailwind-3dtransforms")
+  ],
 }
