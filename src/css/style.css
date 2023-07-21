@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animation-running {
+    animation-play-state: running !important;
+  }
+}
+
 @layer base {
   :root {
     --base-font-size: 0.65rem;
@@ -222,6 +228,18 @@
 
       .icon-svg {
         @apply fill-zinc-800;
+      }
+    }
+  }
+
+  .marquee {
+    @apply flex overflow-hidden;
+    div {
+      @apply flex animate-marquee whitespace-nowrap will-change-transform;
+      animation-play-state: paused;
+
+      span {
+        margin: 0 max(2rem, 3vw);
       }
     }
   }

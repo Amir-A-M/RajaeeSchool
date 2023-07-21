@@ -94,4 +94,17 @@ $(document).ready(() => {
 
   })();
 
+  // 
+  // Marquee
+  // 
+  (function () {
+    const marquees = $('.marquee');
+
+    marquees.each((i, el) => {
+      const marquee = $(el);
+      const clone = marquee.children('div').clone().appendTo(marquee);
+    })
+
+  })();
+
 })
