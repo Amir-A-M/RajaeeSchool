@@ -6,6 +6,9 @@
   .animation-running {
     animation-play-state: running !important;
   }
+  .grayscale-filter {
+    filter: grayscale(1) sepia(0.2) contrast(0.85);
+  }
 }
 
 @layer base {
@@ -87,6 +90,7 @@
     visibility: visible;
     pointer-events: none;
     z-index: 1000;
+    scale: 1.5;
   }
 
   .main-header {
@@ -232,6 +236,14 @@
     }
   }
 
+  .hero-title {
+    @apply overflow-hidden;
+
+    div {
+      @apply translate-y-full;
+    }
+  }
+
   .marquee {
     @apply flex overflow-hidden;
     div {
@@ -241,6 +253,78 @@
       span {
         margin: 0 max(2rem, 3vw);
       }
+    }
+  }
+
+  .our-story {
+    @apply relative grid grid-cols-4 gap-3 md:grid-cols-6;
+    &::after {
+      content: "";
+      @apply absolute bottom-0  h-[1px] left-4 right-4 bg-gray-200 md:hidden;
+    }
+
+    .reveal {
+      @apply col-span-2;
+
+      &:first-child,
+      &:nth-child(3) {
+        @apply aspect-[160/153] md:aspect-[448/328];
+      }
+      &:nth-child(2) {
+        @apply aspect-[159/216] md:aspect-[448/472];
+      }
+      &:nth-child(3) {
+        @apply hidden md:block;
+      }
+
+      div {
+        @apply relative h-0 w-full overflow-hidden;
+
+        img {
+          @apply absolute inset-0 h-full w-full object-cover object-top;
+        }
+      }
+    }
+
+    .header {
+      @apply col-span-4 mt-8 flex flex-col justify-between md:col-span-2;
+
+      .title {
+        @apply text-xl font-bold md:text-2xl;
+      }
+
+      .cta {
+        @apply hidden md:block;
+      }
+    }
+    .content {
+      @apply col-span-4 md:mt-8;
+      p {
+        @apply font-light leading-6 before:mx-4 md:text-lg;
+      }
+    }
+
+    .header,
+    .content {
+      @apply relative;
+
+      &::after {
+        content: "";
+        @apply absolute bottom-0 hidden h-[1px] w-full translate-y-5 bg-gray-200 md:block;
+      }
+    }
+
+    .cta {
+      @apply col-span-4 mt-2 md:col-span-2 md:hidden;
+    }
+  }
+
+  .cta {
+    @apply w-fit rounded-3xl border border-solid border-gray-200 px-3 py-1 text-sm;
+    @apply transition-colors duration-300;
+
+    &:hover {
+      @apply bg-gray-200 text-black;
     }
   }
 }

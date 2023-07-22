@@ -82,14 +82,39 @@ $(document).ready(() => {
   // Hero
   // 
   (function () {
+    const tl = gsap.timeline();
 
-    gsap.to('.hero-image', {
-      scrollTrigger: {
-        trigger: '.hero-image-container',
-        start: 'top 200px',
-        scrub: 3,
-      },
-      y: $('.hero-image-container').height() - $('.hero-image').height()
+    tl.to('.hero-title div', { y: 0, delay: .3, stagger: .6, duration: .6 })
+      .to('.hero-image-container, .main-header', { opacity: 1, duration: 1.6 }, "+=.3")
+
+    if (ScrollTrigger.isInViewport('.partners')) {
+      tl.to('.partners', { opacity: 1, duration: 1.6 }, '-=1.6')
+    } else {
+      gsap.to('.partners',
+        {
+          scrollTrigger: '.partners',
+          opacity: 1,
+          duration: .5,
+        }
+      )
+    }
+
+    if (ScrollTrigger.isInViewport('.our-story .reveal div')) {
+      tl.to('.our-story .reveal div', {
+        height: "100%",
+        duration: 2,
+      }, '-=1.6');
+    }
+
+    $('.hero-image').one("load", function () {
+      gsap.to('.hero-image', {
+        scrollTrigger: {
+          trigger: '.hero-image-container',
+          start: 'top 200px',
+          scrub: 3,
+        },
+        y: $('.hero-image-container').height() - $('.hero-image').height(),
+      })
     })
 
   })();
@@ -100,10 +125,36 @@ $(document).ready(() => {
   (function () {
     const marquees = $('.marquee');
 
-    marquees.each((i, el) => {
-      const marquee = $(el);
-      const clone = marquee.children('div').clone().appendTo(marquee);
+    marquees.each((i, marquee) => {
+      $(marquee).children('div').clone().appendTo(marquee);
     })
+
+  })();
+
+  // 
+  // Reveal
+  // 
+  (function () {
+    const elements = $('.reveal');
+
+
+    elements.each((i, container) => {
+      let el = $(container).children("div")[0];
+
+      if (ScrollTrigger.isInViewport(el)) {
+        return;
+      }
+
+      let tl = gsap.timeline({
+        scrollTrigger: container
+      });
+
+      tl.to(el, {
+        height: "100%",
+        duration: 2,
+        delay: .3
+      });
+    });
 
   })();
 

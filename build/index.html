@@ -31,7 +31,7 @@
     <!-- noise background -->
     <div class="noise-bg"></div>
 
-    <header class="main-header">
+    <header class="main-header opacity-0">
       <button class="toggle-navigation" aria-label="toggle navigation">
         <svg viewBox="0 0 100 100" width="80">
           <path
@@ -313,14 +313,19 @@
       <!-- Hero -->
       <section class="flex flex-col px-5 pt-32 md:px-8">
         <h3 class="mb-2 text-2xl font-bold leading-9">
-          <div>دانش امروز</div>
-          <div>فناوری فرداست</div>
+          <div class="hero-title">
+            <div>دانش امروز</div>
+          </div>
+          <div class="hero-title">
+            <div>فناوری فرداست</div>
+          </div>
         </h3>
 
-        <div class="hero-image-container relative max-h-[70vh] overflow-hidden">
+        <div
+          class="hero-image-container relative max-h-[70vh] overflow-hidden opacity-0"
+        >
           <video
-            class="absolute inset-0 -z-10 h-full w-full object-cover"
-            style="filter: grayscale(1) sepia(0.2) contrast(0.85)"
+            class="grayscale-filter absolute inset-0 -z-10 h-full w-full object-cover"
             loop
             muted
             autoplay
@@ -341,7 +346,7 @@
       </section>
 
       <!-- partners - marquee -->
-      <section class="marquee px-5 py-4 text-xs md:px-8">
+      <section class="partners marquee px-5 py-4 text-xs md:px-8 opacity-0">
         <div
           data-scroll
           data-scroll-class="animation-running"
@@ -359,6 +364,53 @@
           <span>شرکت دانش بنیان لورم</span>
           <span>IPSOM</span>
         </div>
+      </section>
+
+      <!-- Our Story -->
+      <section class="our-story px-5 pb-7 mb-9 md:px-8">
+        <div class="reveal">
+          <div>
+            <img
+              class="grayscale-filter"
+              src="./assets/img/our_story/our_story_1.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="reveal">
+          <div>
+            <img
+              class="grayscale-filter"
+              src="./assets/img/our_story/our_story_2.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="reveal">
+          <div>
+            <img
+              class="grayscale-filter"
+              src="./assets/img/our_story/our_story_3.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="header">
+          <h3 class="title">داستان ما</h3>
+          <a href="" class="cta">داستان ما را ببینید</a>
+        </div>
+        <div class="content">
+          <p>
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+            ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+            و رافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
+            که لازم است، و برای شرایط فعلی تکنو رافیک است، چاپگرها و متون بلکه
+            روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
+            تکنو
+          </p>
+        </div>
+        <a href="" class="cta">داستان ما را ببینید</a>
       </section>
     </main>
   </body>
