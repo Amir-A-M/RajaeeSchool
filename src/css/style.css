@@ -94,7 +94,7 @@
   }
 
   .main-header {
-    @apply fixed z-[990] flex items-center gap-2 px-3 py-5 md:p-6;
+    @apply fixed z-[991] flex items-center gap-2 px-3 py-5 md:p-6 mix-blend-difference;
   }
 
   .logo {
@@ -153,8 +153,7 @@
   }
 
   .navigation {
-    z-index: 990;
-    @apply pointer-events-none fixed inset-0 bg-slate-600 bg-opacity-20 px-9 pb-9 text-gray-100 backdrop-blur;
+    @apply z-[990] pointer-events-none fixed inset-0 bg-slate-600 bg-opacity-20 px-9 pb-9 text-gray-100 backdrop-blur;
     @apply flex flex-col justify-center;
     @apply opacity-0;
     @apply md:items-center md:text-center;
