@@ -1,5 +1,11 @@
 $(document).ready(() => {
 
+  function isTouchDevice() {
+    return (('ontouchstart' in window) ||
+      (navigator.maxTouchPoints > 0) ||
+      (navigator.msMaxTouchPoints > 0));
+  }
+
   //
   // locomotive Scroll + Scroll Trigger config
   //
@@ -157,5 +163,59 @@ $(document).ready(() => {
     });
 
   })();
+
+  //
+  // Showcase Video
+  //
+  (function () {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        target: '.our-story',
+        start: 'bottom center',
+        end: 'bottom top',
+        scrub: 2,
+        pin: '.our-story',
+        pinSpacing: false,
+        snap: 'labelsDirectional',
+      },
+    });
+
+    tl
+      .fromTo('.our-story', { filter: "blur(0px)" }, {
+        filter: "blur(40px)",
+      }, 'showcase-our-story')
+      .fromTo('.showcase-video', { scale: .5 }, {
+        scale: .95,
+      }, 'showcase-our-story')
+
+
+    const video = $('.showcase-video video');
+    let isMuted = video.prop("muted");
+
+    const cursorText = () => isMuted ? "پخش صدا" : "قطع صدا";
+
+    video.click(() => {
+      video.prop("muted", !isMuted);
+
+      isMuted = !isMuted;
+
+      cursor.setText(cursorText());
+    })
+      .on('mouseenter', () => cursor.setText(cursorText())
+      )
+      .on('mouseleave', () => cursor.removeText())
+  })();
+
+  //
+  // Mouse Follower - Cursor
+  //
+  if (!isTouchDevice()) {
+    var cursor = new MouseFollower({
+      stateDetection: {
+        '-pointer': 'a,button',
+        '-hidden': '.social-icon, .nav-item'
+      }
+    });
+  }
 
 })

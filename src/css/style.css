@@ -94,7 +94,7 @@
   }
 
   .main-header {
-    @apply fixed z-[991] flex items-center gap-2 px-3 py-5 md:p-6 mix-blend-difference;
+    @apply fixed z-[991] flex items-center gap-2 px-3 py-5 mix-blend-difference md:p-6;
   }
 
   .logo {
@@ -153,7 +153,7 @@
   }
 
   .navigation {
-    @apply z-[990] pointer-events-none fixed inset-0 bg-slate-600 bg-opacity-20 px-9 pb-9 text-gray-100 backdrop-blur;
+    @apply pointer-events-none fixed inset-0 z-[990] bg-slate-600 bg-opacity-20 px-9 pb-9 text-gray-100 backdrop-blur;
     @apply flex flex-col justify-center;
     @apply opacity-0;
     @apply md:items-center md:text-center;
@@ -257,10 +257,6 @@
 
   .our-story {
     @apply relative grid grid-cols-4 gap-3 md:grid-cols-6;
-    &::after {
-      content: "";
-      @apply absolute bottom-0  h-[1px] left-4 right-4 bg-gray-200 md:hidden;
-    }
 
     .reveal {
       @apply col-span-2;
@@ -286,10 +282,10 @@
     }
 
     .header {
-      @apply col-span-4 mt-8 flex flex-col justify-between md:col-span-2;
+      @apply col-span-4 mt-8 flex flex-col justify-between md:col-span-2 2xl:col-span-1 2xl:col-start-2;
 
       .title {
-        @apply text-xl font-bold md:text-2xl;
+        @apply text-xl font-bold md:text-2xl lg:text-3xl;
       }
 
       .cta {
@@ -299,17 +295,7 @@
     .content {
       @apply col-span-4 md:mt-8;
       p {
-        @apply font-light leading-6 before:mx-4 md:text-lg;
-      }
-    }
-
-    .header,
-    .content {
-      @apply relative;
-
-      &::after {
-        content: "";
-        @apply absolute bottom-0 hidden h-[1px] w-full translate-y-5 bg-gray-200 md:block;
+        @apply max-w-3xl font-light leading-6 before:mx-4 md:text-lg;
       }
     }
 
@@ -324,6 +310,26 @@
 
     &:hover {
       @apply bg-gray-200 text-black;
+    }
+  }
+
+  .mf-cursor {
+    @apply z-[1000] mix-blend-difference;
+
+    .mf-cursor-text {
+      @apply font-extrabold text-black;
+    }
+
+    &.-pointer::before {
+      transform: scale(1);
+    }
+
+    &.-text::before {
+      @apply opacity-100;
+    }
+
+    &.-hidden::before {
+      transform: scale(0);
     }
   }
 }
