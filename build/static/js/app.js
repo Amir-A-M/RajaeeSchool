@@ -122,6 +122,11 @@ $(document).ready(() => {
         y: $('.hero-image-container').height() - $('.hero-image').height(),
       })
     })
+      .each(function () {
+        if (this.complete) {
+          $(this).trigger('load'); // For jQuery >= 3.0 
+        }
+      });
 
   })();
 
@@ -142,7 +147,6 @@ $(document).ready(() => {
   // 
   (function () {
     const elements = $('.reveal');
-
 
     elements.each((i, container) => {
       let el = $(container).children("div")[0];
@@ -173,10 +177,9 @@ $(document).ready(() => {
         target: '.our-story',
         start: 'bottom center',
         end: 'bottom top',
-        scrub: 2,
+        scrub: 1,
         pin: '.our-story',
         pinSpacing: false,
-        snap: 'labelsDirectional',
       },
     });
 
@@ -217,5 +220,28 @@ $(document).ready(() => {
       }
     });
   }
+
+  //
+  // text mask fill
+  //
+  (function () {
+    const elements = $('.text-mask-fill');
+
+    elements.each((i, container) => {
+      let el = $(container).children("span").children("span");
+
+      let tl = gsap.timeline({
+        scrollTrigger: container
+      });
+
+      tl.to(el, {
+        width: "100%",
+        duration: 2,
+        delay: .4,
+        stagger: .2,
+      });
+    });
+
+  })();
 
 })

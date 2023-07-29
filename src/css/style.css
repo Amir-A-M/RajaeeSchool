@@ -284,10 +284,6 @@
     .header {
       @apply col-span-4 mt-8 flex flex-col justify-between md:col-span-2 2xl:col-span-1 2xl:col-start-2;
 
-      .title {
-        @apply text-xl font-bold md:text-2xl lg:text-3xl;
-      }
-
       .cta {
         @apply hidden md:block;
       }
@@ -330,6 +326,90 @@
 
     &.-hidden::before {
       transform: scale(0);
+    }
+  }
+
+  .title {
+    @apply text-xl font-bold md:text-2xl lg:text-3xl;
+  }
+
+  .majors {
+    @apply relative flex flex-col justify-center gap-3;
+
+    .header {
+      @apply flex flex-col gap-3 px-7 md:flex-row md:gap-16 lg:pr-12 xl:pr-24;
+    }
+
+    .content {
+      @apply flex w-full flex-col;
+
+      .major {
+        @apply block p-9 text-center text-3xl font-medium italic;
+      }
+
+      li {
+        &:nth-child(1) .major {
+          @apply ml-20;
+        }
+
+        &:nth-child(3) .major {
+          @apply mr-20;
+        }
+      }
+    }
+  }
+
+  .text-mask-fill span {
+    @apply relative block whitespace-nowrap text-gray-600;
+
+    span {
+      @apply absolute inset-0 left-auto block w-0 overflow-hidden text-gray-100;
+    }
+  }
+
+  .tic-tac-toe {
+    @apply flex flex-col items-center justify-center;
+
+    .message {
+      @apply mb-3 italic;
+    }
+
+    .board {
+      @apply grid grid-cols-3;
+
+      .cell {
+        @apply m-0.5 flex h-24 w-24 cursor-pointer items-center justify-center;
+        background-color: hsl(0, 0%, 3%);
+        font-family: ui-sans-serif;
+
+        &:hover {
+          background-color: hsl(0, 0%, 6%);
+        }
+
+        &.highlight {
+          @apply bg-green-500 bg-opacity-40;
+        }
+
+        &.fill-x,
+        &.fill-o {
+          @apply cursor-context-menu leading-[6rem];
+
+          &::after,
+          &::before {
+            @apply text-[6rem];
+          }
+        }
+
+        &.fill-x::after {
+          content: "X";
+          @apply text-red-600;
+        }
+
+        &.fill-o::after {
+          content: "O";
+          @apply text-sky-400;
+        }
+      }
     }
   }
 }

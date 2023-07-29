@@ -377,6 +377,7 @@
         <div class="reveal">
           <div>
             <img
+              loading="lazy"
               class="grayscale-filter"
               src="./assets/img/our_story/our_story_1.webp"
               alt=""
@@ -386,6 +387,7 @@
         <div class="reveal">
           <div>
             <img
+              loading="lazy"
               class="grayscale-filter"
               src="./assets/img/our_story/our_story_2.webp"
               alt=""
@@ -395,6 +397,7 @@
         <div class="reveal">
           <div>
             <img
+              loading="lazy"
               class="grayscale-filter"
               src="./assets/img/our_story/our_story_3.webp"
               alt=""
@@ -433,52 +436,73 @@
         </div>
       </section>
 
-      <!-- Our Story -->
-      <section class="mb-9 px-5 pb-7 md:px-8">
-        <div class="asd">
-          <div>
-            <img
-              class="grayscale-filter"
-              src="./assets/img/our_story/our_story_1.webp"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="asd">
-          <div>
-            <img
-              class="grayscale-filter"
-              src="./assets/img/our_story/our_story_2.webp"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="asd">
-          <div>
-            <img
-              class="grayscale-filter"
-              src="./assets/img/our_story/our_story_3.webp"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="heaader">
-          <h3 class="title">داستان ما</h3>
-          <a href="" class="cta">داستان ما را ببینید</a>
-        </div>
-        <div class="contsent">
-          <p>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
-            و رافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
-            که لازم است، و برای شرایط فعلی تکنو رافیک است، چاپگرها و متون بلکه
-            روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
-            تکنو
+      <!-- Majors -->
+      <section class="majors px-5 py-32 md:px-8">
+        <div class="header">
+          <h3 class="title">رشته ها</h3>
+          <p class="text-mask-fill">
+            <span>
+              لورم ایپسوم متن ساختگی با تولید ساد
+              <span>لورم ایپسوم متن ساختگی با تولید ساد</span>
+            </span>
+            <span>
+              نامفهوم از صنعت چاپ، و با استفاده
+              <span>نامفهوم از صنعت چاپ، و با استفاده</span>
+            </span>
           </p>
         </div>
-        <a href="" class="cta">داستان ما را ببینید</a>
+        <nav class="content">
+          <ul>
+            <li>
+              <a
+                href=""
+                class="major"
+                data-cursor-img="./assets/img/majors/computer-class.jpg"
+                >کامپیوتر</a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="major"
+                data-cursor-img="./assets/img/majors/accounting-class.jpg"
+                >حسابداری</a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="major"
+                data-cursor-img="./assets/img/majors/art-class.jpg"
+                >انیمیشن</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </section>
+
+      <!-- TicTacToe Game -->
+      <section class="tic-tac-toe pb-32">
+        <div class="flex w-full max-w-[21rem] justify-between px-3 md:px-0">
+          <p class="message">بازی کن</p>
+          <div>
+            <button id="game-restart" class="cta text-xs">شروع دوباره</button>
+          </div>
+        </div>
+        <ul class="board" data-cursor="-hidden">
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+          <li class="cell"></li>
+        </ul>
       </section>
     </main>
+
+    <script src="./static/js/ticTacToe.js" defer></script>
   </body>
 </html>
