@@ -1,7 +1,7 @@
 /**
- * A Tic Tac Toe game with alpha beta algorithm
+ * @overview A Tic Tac Toe game with alpha beta algorithm
  * @author Amir Abbas Mousavi <mamyrbas@gmil.com>
- * [Github](https://github.com/Amir-A-M/TicTacToeGame)
+ * @link https://github.com/Amir-A-M/TicTacToeGame
 */
 
 const selectorPrefix = '.tic-tac-toe ';
