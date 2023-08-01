@@ -244,4 +244,166 @@ $(document).ready(() => {
 
   })();
 
+  //
+  // Pre Registration
+  //
+  (function () {
+    const form = $('.pre-registration form');
+    const name = form.find('input[name="name"]');
+    const tel = form.find('input[name="tel"]');
+
+    form.submit(async function (e) {
+      e.preventDefault();
+
+      const nameVal = name.val().trim();
+      const telVal = tel.val().trim();
+
+      const validation = validateForm(nameVal, telVal);
+      if (!validation.valid) {
+        Toast.show({
+          type: "error",
+          message: validation.message,
+        });
+        return;
+      }
+
+      try {
+        Toast.show({
+          message: "درحال ارسال اطلاعات",
+        });
+
+        // fake api
+        await fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: 'post',
+          body: JSON.stringify({ name: nameVal, tel: telVal }),
+        });
+
+        Toast.show({
+          type: "success",
+          message: "اطلاعات شما با موفقیت ثبت شد!",
+        });
+      } catch (error) {
+        console.error(error);
+        Toast.show({
+          type: "error",
+          message: error.message || "خطایی رخ داد.",
+        });
+      }
+
+    });
+
+    // Function for form validation
+    function validateForm(nameVal, telVal) {
+      const telRegEx = /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/;
+
+      if (nameVal.length < 3) {
+        return {
+          valid: false,
+          message: "نام باید حداقل 3 کاراکتر باشد.",
+        };
+      }
+
+      if (!telRegEx.test(telVal)) {
+        return {
+          valid: false,
+          message: "لطفا یک شماره تلفن معتبر وارد کنید.",
+        };
+      }
+
+      return { valid: true };
+    }
+
+  })();
+
+  //
+  // Toast Notification
+  //
+  window.Toast = (function ($) {
+    const toastDuration = 5000; // Duration in milliseconds
+    let toastCounter = 0;
+    let activeToasts = [];
+
+    function show({ type, message }) {
+      const toastId = `toast-${toastCounter}`;
+      toastCounter++;
+
+      function title() {
+        switch (type) {
+          case 'error':
+            return 'خطا';
+
+          case 'success':
+            return 'عملیات موفق';
+
+          default:
+            return 'اطلاع';
+        }
+      }
+
+      // Create a new toast element
+      const toastElement = $(`
+      <div class="toast ${type}" id="${toastId}">
+        <div class="toast-content">
+          <span class="icon"></span>
+          <div class="message">
+            <span class="text title">${title()}</span>
+            <span class="text">${message}</span>
+          </div>
+        </div>
+        <span class="close">&times;</span>
+        <div class="progress"></div>
+      </div>
+    `);
+
+      // Event listener for the close icon to close the toast manually
+      toastElement.on("click", () => {
+        removeToast(toastId);
+      });
+
+      // Append the toast to the container
+      $("#toasts-container").append(toastElement);
+
+      // Show the toast
+      setTimeout(() => {
+        toastElement.addClass("active");
+      }, 100);
+
+      // Set a timer to remove the toast after the specified duration
+      const timer = setTimeout(() => {
+        removeToast(toastId);
+      }, toastDuration);
+
+      // Save the active toast data to manage removal
+      activeToasts.push({ id: toastId, timer });
+    }
+
+    function removeToast(toastId) {
+      const toastElement = $("#" + toastId);
+      if (toastElement.length > 0) {
+        toastElement.removeClass("active");
+        setTimeout(() => {
+          toastElement.remove();
+        }, 300);
+      }
+
+      // Clear the timer for the removed toast
+      activeToasts = activeToasts.filter((toast) => toast.id !== toastId);
+    }
+
+    // Function to close all active toasts manually
+    function closeAll() {
+      activeToasts.forEach((toast) => {
+        clearTimeout(toast.timer);
+        removeToast(toast.id);
+      });
+      activeToasts = [];
+    }
+
+    // Public API
+    return {
+      show,
+      closeAll,
+    };
+  })(jQuery);
+
 })

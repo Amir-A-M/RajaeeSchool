@@ -68,6 +68,10 @@
     font-family: "Vazirmatn", sans-serif;
     -webkit-tap-highlight-color: transparent;
   }
+
+  ::selection {
+    background-color: rgba(147, 196, 253, 0.36);
+  }
 }
 
 .c-scrollbar_thumb {
@@ -290,8 +294,9 @@
     }
     .content {
       @apply col-span-4 md:mt-8;
-      p {
-        @apply max-w-3xl font-light leading-6 before:mx-4 md:text-lg;
+
+      .caption {
+        @apply before:mx-4;
       }
     }
 
@@ -301,7 +306,7 @@
   }
 
   .cta {
-    @apply w-fit rounded-3xl border border-solid border-gray-200 px-3 py-1 text-sm;
+    @apply w-fit select-none rounded-3xl border border-solid border-gray-200 px-3 py-1 text-sm;
     @apply transition-colors duration-300;
 
     &:hover {
@@ -331,6 +336,10 @@
 
   .title {
     @apply text-xl font-bold md:text-2xl lg:text-3xl;
+  }
+
+  .caption {
+    @apply max-w-3xl font-light leading-6 md:text-lg;
   }
 
   .majors {
@@ -412,6 +421,191 @@
       }
     }
   }
+
+  .form-control {
+    label {
+      @apply mb-1 text-sm font-thin;
+    }
+
+    input {
+      @apply block overflow-hidden rounded-md bg-slate-600 bg-opacity-10 px-3 py-2 text-slate-300;
+      @apply transition-all duration-150;
+      @apply border border-solid border-slate-500;
+
+      & + span {
+        @apply invisible m-1 block overflow-hidden text-[.7rem] font-thin text-red-200 
+         opacity-0 transition-all delay-300 duration-100;
+      }
+
+      &:hover,
+      &:focus {
+        @apply border-slate-400;
+      }
+
+      &:valid {
+        @apply border-teal-500;
+
+        &:hover,
+        &:focus {
+          @apply border-teal-300;
+        }
+      }
+
+      &:not(:placeholder-shown):invalid {
+        @apply border-red-500;
+
+        &:hover,
+        &:focus {
+          @apply border-red-300;
+        }
+
+        & + span {
+          @apply visible opacity-100;
+        }
+      }
+    }
+  }
+
+  .form-control-checkbox {
+    @apply flex cursor-pointer items-center;
+
+    label {
+      @apply inline-block;
+    }
+
+    .box {
+      @apply relative top-px h-[17px] w-[17px] rounded-sm border
+        border-solid border-slate-400 align-middle;
+      transition: background 0.1s ease;
+
+      &:after {
+        @apply absolute left-[5px] top-px h-[11px] w-[5px] rotate-45
+        scale-0 opacity-0
+        transition-all delay-150 duration-300 ease-linear;
+        content: "";
+
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+      }
+    }
+
+    .label {
+      @apply mr-2 cursor-pointer align-middle text-sm font-thin;
+    }
+
+    input {
+      @apply hidden;
+
+      &:checked ~ .box {
+        @apply animate-jelly border-transparent bg-teal-500;
+
+        &:after {
+          @apply scale-100 opacity-100;
+        }
+      }
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    @apply border-slate-300;
+    transition: none;
+    -webkit-box-shadow: 0 0 0 35px #05080a inset !important;
+    -webkit-text-fill-color: #cbd5e1 !important;
+  }
+
+  .pre-registration {
+    .title {
+      @apply mb-3;
+    }
+    .caption {
+      @apply mb-10 max-w-[55ch] text-center font-thin;
+      text-wrap: balance;
+    }
+  }
+
+  .btn {
+    @apply block w-full rounded-lg bg-teal-700 py-2 text-center text-sm font-light;
+    @apply border-[3px] border-solid border-teal-700;
+    @apply outline outline-[2px] outline-teal-700;
+    @apply transition-all duration-200;
+
+    box-shadow: 0 0 50px 0 #0f766d1e;
+
+    &:hover {
+      @apply border-black;
+    }
+  }
+
+  .toast {
+    @apply fixed left-5 top-5 -translate-x-[calc(100%+1.25rem)] overflow-hidden 
+    rounded-lg border bg-white p-4 shadow-md transition-all duration-500 ease-in-out transform;
+
+    &.active {
+      @apply translate-x-0;
+    }
+
+    &-content {
+      @apply flex items-center pl-4;
+    }
+
+    .icon {
+      @apply ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500 text-white;
+
+      &::before {
+        content: "\2139"; /* Unicode for info icon */
+      }
+    }
+
+    &.success .icon {
+      @apply bg-emerald-500;
+
+      &::before {
+        content: "\2714"; /* Unicode for checkmark icon */
+      }
+    }
+
+    &.error .icon {
+      @apply bg-rose-500;
+
+      &::before {
+        content: "\2716"; /* Unicode for cross icon */
+      }
+    }
+
+    .message {
+      @apply flex flex-col;
+      .text {
+        @apply text-sm text-gray-600;
+        &.title {
+          @apply font-bold text-gray-800;
+        }
+      }
+    }
+
+    .close {
+      @apply absolute left-2 top-0 cursor-pointer p-1 text-gray-800 opacity-70 hover:opacity-100;
+    }
+
+    .progress {
+      @apply absolute bottom-0 left-0 h-1 w-full bg-gray-400;
+      &::before {
+        content: "";
+        @apply absolute inset-0 bg-sky-500;
+        animation: progress 5s linear forwards;
+      }
+    }
+
+    &.error .progress::before {
+      @apply bg-rose-500;
+    }
+
+    &.success .progress::before {
+      @apply bg-emerald-500;
+    }
+  }
 }
 
 /* Animations */
@@ -458,5 +652,11 @@
 
   100% {
     transform: translate(5%, 0);
+  }
+}
+
+@keyframes progress {
+  100% {
+    translate: 100% 0;
   }
 }

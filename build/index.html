@@ -409,7 +409,7 @@
           <a href="" class="cta">داستان ما را ببینید</a>
         </div>
         <div class="content">
-          <p>
+          <p class="caption">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
             ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
@@ -482,7 +482,7 @@
       </section>
 
       <!-- TicTacToe Game -->
-      <section class="tic-tac-toe pb-32">
+      <section class="tic-tac-toe pb-20">
         <div class="flex w-full max-w-[21rem] justify-between px-3 md:px-0">
           <p class="message">بازی کن</p>
           <div>
@@ -501,7 +501,58 @@
           <li class="cell"></li>
         </ul>
       </section>
+
+      <!-- Pre-registration -->
+      <section
+        class="pre-registration flex flex-col items-center justify-center py-14"
+      >
+        <h3 class="title">فرم پیش ثبت نام دوره ها</h3>
+        <p class="caption">
+          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+          استفاده از طراحان گرافیک است
+        </p>
+        <form novalidate>
+          <div class="form-control">
+            <label for="name">نام و نام خانوادگی</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              autocomplete="name"
+              pattern=".{3,}"
+              required
+              placeholder=""
+            />
+            <span>حداقل 3 کاراکتر</span>
+          </div>
+          <div class="form-control">
+            <label for="tel">شماره همراه</label>
+            <input
+              id="tel"
+              type="tel"
+              name="tel"
+              autocomplete="tel"
+              pattern="09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}"
+              required
+              placeholder=""
+            />
+            <span>یک شماره صحیح وارد کنید. 11 رقم.</span>
+          </div>
+          <div class="form-control-checkbox" data-cursor="-hidden">
+            <input id="newsletter" type="checkbox" name="newsletter" />
+            <label class="box" for="newsletter"></label>
+            <label class="label" for="newsletter"> پذیرش قوانین </label>
+          </div>
+          <small class="block max-w-[34ch] text-xs font-thin">
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
+          </small>
+
+          <button class="btn disable mt-5" data-cursor="-hidden">ارسال</button>
+        </form>
+      </section>
     </main>
+
+    <div id="toasts-container"></div>
 
     <script src="./static/js/ticTacToe.js" defer></script>
   </body>
