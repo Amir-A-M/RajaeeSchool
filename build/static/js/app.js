@@ -169,6 +169,18 @@ $(document).ready(() => {
   })();
 
   //
+  // Mouse Follower - Cursor
+  //
+  if (!isTouchDevice()) {
+    var cursor = new MouseFollower({
+      stateDetection: {
+        '-pointer': 'a,button',
+        '-hidden': '.social-icon, .nav-item'
+      }
+    });
+  }
+
+  //
   // Showcase Video
   //
   (function () {
@@ -195,31 +207,33 @@ $(document).ready(() => {
     const video = $('.showcase-video video');
     let isMuted = video.prop("muted");
 
+    const videoDetail = gsap.timeline();
+    videoDetail.to('.showcase-video .detail div', { opacity: 0, duration: .3, }).reverse();
+
+
     const cursorText = () => isMuted ? "پخش صدا" : "قطع صدا";
 
     video.click(() => {
+      video[0].volume = .3;
+
       video.prop("muted", !isMuted);
 
       isMuted = !isMuted;
 
-      cursor.setText(cursorText());
-    })
-      .on('mouseenter', () => cursor.setText(cursorText())
-      )
-      .on('mouseleave', () => cursor.removeText())
-  })();
+      videoDetail.reversed(!videoDetail.reversed());
 
-  //
-  // Mouse Follower - Cursor
-  //
-  if (!isTouchDevice()) {
-    var cursor = new MouseFollower({
-      stateDetection: {
-        '-pointer': 'a,button',
-        '-hidden': '.social-icon, .nav-item'
+      if (cursor) {
+        cursor.setText(cursorText());
       }
-    });
-  }
+    })
+
+    if (cursor) {
+      video
+        .on('mouseenter', () => cursor.setText(cursorText()))
+        .on('mouseleave', () => cursor.removeText())
+    }
+
+  })();
 
   //
   // text mask fill
@@ -282,6 +296,9 @@ $(document).ready(() => {
           type: "success",
           message: "اطلاعات شما با موفقیت ثبت شد!",
         });
+
+        name.val('');
+        tel.val('');
       } catch (error) {
         console.error(error);
         Toast.show({

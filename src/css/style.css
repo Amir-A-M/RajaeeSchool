@@ -9,6 +9,10 @@
   .grayscale-filter {
     filter: grayscale(1) sepia(0.2) contrast(0.85);
   }
+
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 @layer base {
@@ -94,7 +98,7 @@
     visibility: visible;
     pointer-events: none;
     z-index: 1000;
-    scale: 1.5;
+    scale: 1.6;
   }
 
   .main-header {
@@ -237,6 +241,34 @@
         @apply fill-zinc-800;
       }
     }
+
+    &-dark {
+      .icon-border {
+        @apply stroke-black;
+
+        path:nth-child(2) {
+          @apply fill-zinc-900;
+        }
+      }
+
+      .icon-svg {
+        @apply fill-zinc-900;
+      }
+
+      &:hover {
+        .icon-border {
+          @apply stroke-zinc-900;
+
+          path:nth-child(2) {
+            @apply fill-zinc-900;
+          }
+        }
+
+        .icon-svg {
+          @apply fill-zinc-200;
+        }
+      }
+    }
   }
 
   .hero-title {
@@ -335,7 +367,7 @@
   }
 
   .title {
-    @apply text-xl font-bold md:text-2xl lg:text-3xl;
+    @apply text-2xl font-bold lg:text-3xl;
   }
 
   .caption {
@@ -540,7 +572,7 @@
   }
 
   .toast {
-    @apply fixed left-5 top-5 -translate-x-[calc(100%+1.25rem)] overflow-hidden 
+    @apply fixed left-5 top-5 z-[991] -translate-x-[calc(100%+1.25rem)] overflow-hidden 
     rounded-lg border bg-white p-4 shadow-md transition-all duration-500 ease-in-out transform;
 
     &.active {
