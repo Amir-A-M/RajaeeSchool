@@ -76,6 +76,15 @@
   ::selection {
     background-color: rgba(147, 196, 253, 0.36);
   }
+
+  .has-scroll-smooth {
+    @apply fixed inset-0;
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
 }
 
 .c-scrollbar_thumb {
@@ -91,7 +100,8 @@
     bottom: -50%;
     width: 200%;
     height: 200dvh;
-    background: transparent url("./../../assets/img/noise-transparent.png") repeat 0 0;
+    background: transparent url("./../../assets/img/noise-transparent.png")
+      repeat 0 0;
     background-repeat: repeat;
     animation: noise-bg-animation 0.2s infinite;
     opacity: 0.9;
