@@ -1,3 +1,15 @@
+// Prefers Reduced Motion
+const isReduced = window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
+  window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+
+if (!!isReduced) {
+  // DON'T use amination!
+  alert(`توجه: سیستم شما حالت کاهش حرکت (Reduced Motion) را ترجیح می‌دهد.
+  برای تجربه‌ی بهتر، این حالت توسط توسعه‌دهنده بهبود داده نشده است!!
+  با این حال، امیدواریم که تجربه‌ی مرور وب‌سایت ما برای شما همچنان لذت‌بخش باشد.
+  با تشکر از شما که از ما حمایت می‌کنید.`);
+}
+
 $(document).ready(() => {
 
   function isTouchDevice() {
