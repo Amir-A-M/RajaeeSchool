@@ -108,7 +108,7 @@
     visibility: visible;
     pointer-events: none;
     z-index: 1000;
-    scale: 1.6;
+    scale: 2;
   }
 
   .main-header {

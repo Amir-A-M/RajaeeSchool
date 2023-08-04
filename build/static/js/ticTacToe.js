@@ -50,7 +50,9 @@ function boardClick(e) {
 
     // is game running? || is this fill? || if Computer turn
     if (!isGameRunning || element.data('fill') || (currentPlayer === computer && gameMode === '1p')) return;
-
+    
+    message.text('نوبت ' + makeTheName());
+    
     emptyCells--;
 
     fillCell(element);
