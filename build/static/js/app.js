@@ -25,7 +25,7 @@ $(document).ready(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-    const locoScroll = new LocomotiveScroll({
+    window.locoScroll = new LocomotiveScroll({
       el: document.querySelector("[data-scroll-container]"),
       smooth: true
     });
@@ -49,6 +49,9 @@ $(document).ready(() => {
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.defaults({ scroller: "[data-scroll-container]" });
 
+    $(document).on('load resize', function () {
+      locoScroll.update()
+    });
   })();
 
   //
